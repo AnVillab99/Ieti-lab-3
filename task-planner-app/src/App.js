@@ -6,7 +6,7 @@ import {TodoApp} from "./TodoApp"
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
 
 class App extends Component {
-  constructor(props) {
+constructor(props) {
     super(props);
     this.state = { isLoggedIn: false };
     localStorage.setItem("email","test@mail.com");
@@ -15,6 +15,7 @@ class App extends Component {
         localStorage.setItem("isLoggedIn",false);
     }
     this.loginF = this.loginF.bind(this);
+    console.log(this.state.isLoggedIn)
     
 }
 
@@ -33,7 +34,6 @@ render() {
         <Router>
             <div className="App">
                 <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo"/>
                     <h1 className="App-title">TODO React App</h1>
                 </header>
                 <div>

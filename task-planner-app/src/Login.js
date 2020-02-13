@@ -15,6 +15,7 @@ export class Login extends React.Component{
 
 
     constructor(props) {
+        console.log("FEWfwefewfewfewfwe")
         super(props);
         this.state = {email : "", password : ""};
         this.handleEmail = this.handleEmail.bind(this);

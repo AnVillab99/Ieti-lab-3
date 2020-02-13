@@ -22,10 +22,6 @@ export class TodoApp extends Component{
     render(){
         return(
         <div className="App">
-        <header className="App-header">
-            
-            <h1 className="App-title">TODO React App</h1>
-        </header>
 
         <br/>
         <br/>
