@@ -98,6 +98,7 @@ export default function DrawerTodo() {
     localStorage.setItem("isLoggedIn",false);
     localStorage.clear()
     console.log("log out ya")
+    window.location.reload(false);
     
   };
 
@@ -168,12 +169,7 @@ export default function DrawerTodo() {
         <br/>
         <br/>
 
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-
+      
         <br/>
         <br/>
         <br/>

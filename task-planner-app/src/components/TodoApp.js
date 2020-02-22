@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 
 import {TodoList} from "./TodoList";
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import DrawerTodo from "./Drawer"
+import Grid from '@material-ui/core/Grid';
 
 import AddButton from "./AddButton"
 import moment from "moment"
@@ -16,34 +14,36 @@ export class TodoApp extends Component{
 
     constructor(props) {
         super(props);
-        this.state = { items: [], description: "", status: "", dueDate: moment().format('YYYY-MM-DD'), name: "", email: ""};
+        this.state = { items: [], description: "", state: "", dueDate: moment().format('YYYY-MM-DD'), author: "", email: ""};
         this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-        this.handleStatusChange = this.handleStatusChange.bind(this);
+        this.handleStateChange = this.handleStateChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
-        this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleAuthorChange = this.handleAuthorChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        let todo ={state:"in progress",description:"algo",status:"ready",author:"yo",email:"yo@y",dueDate:moment().format('YYYY-MM-DD')}
+        let todo ={state:"in progress",description:"algo",state:"ready",author:"yo",email:"yo@y",dueDate:moment().format('YYYY-MM-DD')}
         this.state.items.push(todo)
     }
 
     render(){
         return(
-        <div className="App">
-        <DrawerTodo />
+        <div className="App" style={{paddingBottom:"10px"}}>
+            <DrawerTodo />
             <h3>New TODO</h3>
+            <div>
+                <Grid container direction="row" spacing={3} style={{paddingTop:"30px"}}>
+                    <Grid item>
+                        <TodoList todoList={this.state.items}/>
+                    </Grid>
+                    <Grid>
 
-        <br/>
-        <br/>
-        <div>
-        <TodoList todoList={this.state.items}/>
-        </div>
-        <div>
+                    </Grid>
         
-        <AddButton  meter={this}/>
-            
-                
-        </div>
+                    <Grid item>
+                        <AddButton  meter={this}/>
+                    </Grid>
+                </Grid>
+            </div>      
         </div>
     );
     }
@@ -56,27 +56,27 @@ export class TodoApp extends Component{
         });
     }
 
-    handleStatusChange(e) {
+    handleStateChange(e) {
         this.setState({
-            status: e.target.value
+            state: e.target.value
         });
     }
 
     handleDateChange(e) {
         console.log("eeeeeeeeeeeeeeeeeeeeee")
-        console.log(e)
+        console.log(e.target.value)
         this.setState({
-            dueDate: moment(e.target.value,'YYYY-MM-DD')
+            dueDate: e.target.value
         });
-        console.log(this.state.dueDate)
+        console.log("due date " +this.state.dueDate)
     }
 
     handleEmailChange(e) {
         this.setState({ email: e.target.value });
     }
 
-    handleNameChange(e) {
-        this.setState({ name: e.target.value });
+    handleAuthorChange(e) {
+        this.setState({ author: e.target.value });
     }
 
     handleSubmit(e) {
@@ -84,23 +84,23 @@ export class TodoApp extends Component{
         e.preventDefault();
         
 
-        if (!this.state.description.length || !this.state.status.length || !this.state.dueDate || !this.state.name.length || !this.state.email.length)
+        if (!this.state.description.length || !this.state.state.length || !this.state.dueDate || !this.state.author.length || !this.state.email.length)
             return;
 
         const newItem = {
             description: this.state.description,
-            status: this.state.status,
+            state: this.state.state,
             dueDate: this.state.dueDate,
-            name: this.state.name, 
+            author: this.state.author, 
             email: this.state.email 
 
         };
         this.setState(prevState => ({
             items: prevState.items.concat(newItem),
             description: "",
-            status: "",
+            state: "",
             dueDate: moment().format('YYYY-MM-DD'),
-            name: "",
+            author: "",
             email: "",
         }));
 

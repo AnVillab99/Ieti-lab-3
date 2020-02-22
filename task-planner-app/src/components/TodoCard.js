@@ -25,8 +25,10 @@ const useStyles = makeStyles({
 
 export default function SimpleCard(props) {
     const classes = useStyles();
+    
 
     return (
+      <div>
         <Card className={classes.root}>
         <CardContent>
             <Typography variant="h5" component="h2">
@@ -43,5 +45,7 @@ export default function SimpleCard(props) {
             
         </CardActions>
         </Card>
+        <br/>
+        </div>
     );
 }
