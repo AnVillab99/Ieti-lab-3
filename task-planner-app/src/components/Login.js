@@ -43,7 +43,7 @@ export class Login extends React.Component{
         e.preventDefault();
         console.log("email:"+ e.target.value+" saved: "+localStorage.getItem("email"))
         if(localStorage.getItem("email") === this.state.email && localStorage.getItem("password") === this.state.password) {
-                localStorage.setItem("isLoggedIn", "true")
+                localStorage.setItem("isLoggedIn", true)
                 this.props.loginF()
         }else{
             alert("Credenciales erradas")
@@ -82,7 +82,7 @@ export class Login extends React.Component{
                                     selected={this.state.password}
                                     onChange={this.handlePassword}/>
                                     
-                                />
+    
                             </FormControl>
                             <Button
                                 type="submit"
